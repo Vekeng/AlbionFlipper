@@ -1,287 +1,369 @@
-<!doctype html>
-<html data-bs-theme="dark">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="AlbionFlipper is a powerful flipping tool for Albion Online. Maximize your profit by flipping items in the market with ease.">
-        <meta name="google-site-verification" content="SvlfS0ZFGcku2EflM4GtZZ7uF4jiURXSY7XTqaQ12NE" />
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="018fa0c7-6ab7-4c70-8547-8ab30f914456"></script>
-        <title>AlbionFlipper - The Ultimate Black Market Flipping Tool for Albion Online</title>
-        <link rel="stylesheet" href="css/style.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.css">
-        
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-    </head>
-<body>
-    <div class="d-flex ustify-content-end me-3">
-        
-    </div>
-    <div class="d-flex justify-content-end me-3">
-        <label class="form-check form-switch">
-          <input type="checkbox" id="themeToggle" class="form-check-input">
-          <span>Dark Mode</span>
-        </label>
-        <a class="mx-2 text-info" href="https://github.com/Vekeng/AlbionFlipper" target="_blank"><i class="fab fa-github"></i></a>
-        <a class="mx-1 text-info" href="https://discord.gg/2ySkAuX" target="_blank"><i class="fab fa-discord"></i></a>
-        <a class="mx-1 text-info" href="https://github.com/Vekeng/AlbionFlipper?tab=readme-ov-file#full-user-tutorial" target="_blank"><i class="fa-regular fa-circle-question"></i></a>
-        <a class="mx-1 text-info" href="https://www.paypal.com/donate/?hosted_button_id=USFH3U33BMAAY" target="_blank"><i class="fa-brands fa-paypal"></i></a>
-      </div>
-    <div class="toolbar p-3">
-        <div class="d-flex align-items-center gap-2 button-container">
-            <!-- Server Dropdown -->
-            <div class="dropdown" id="serverSelect">
-                <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Server
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="serverSelect">
-                    <li><a class="dropdown-item" href="#" data-value="Europe">Europe</a></li>
-                    <li><a class="dropdown-item" href="#" data-value="Asia">Asia</a></li>
-                    <li><a class="dropdown-item" href="#" data-value="Americas">Americas</a></li>
-                </ul>
-            </div>
-    
-            <!-- Tiers Dropdown -->
-            <div class="dropdown" id="tierSelect">
-                <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" id="tierDropdownButton" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-                    Tiers
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="tierDropdownButton">
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="4" id="tier4" /> <label class="form-check-label" for="tier4">4</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="5" id="tier5" /> <label class="form-check-label" for="tier5">5</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="6" id="tier6" /> <label class="form-check-label" for="tier6">6</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="7" id="tier7" /> <label class="form-check-label" for="tier7">7</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="8" id="tier8" checked/> <label class="form-check-label" for="tier8">8</label></div></a></li>
-                </ul>
-            </div>
-    
-            <!-- Cities Dropdown -->
-            <div class="dropdown" id="citySelect">
-                <button class="btn btn-secondary dropdown-toggle fixed-width" type="button" id="cityDropdownButton" data-bs-auto-close="outside" data-bs-toggle="dropdown" aria-expanded="false">
-                    Cities
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="cityDropdownButton">
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Martlock" id="martlock" /> <label class="form-check-label" for="martlock">Martlock</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Fort Sterling" id="fortsterling" /> <label class="form-check-label" for="fortsterling">Fort Sterling</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Thetford" id="thetford" /> <label class="form-check-label" for="thetford">Thetford</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Lymhurst" id="lymhurst" /> <label class="form-check-label" for="lymhurst">Lymhurst</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Bridgewatch" id="bridgewatch" /> <label class="form-check-label" for="bridgewatch">Bridgewatch</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Caerleon" id="caerleon"/> <label class="form-check-label" for="caerleon">Caerleon</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Brecilien" id="brecilien" /> <label class="form-check-label" for="brecilien">Brecilien</label></div></a></li>
-                    <li><a class="dropdown-item" href="#"><div class="form-check"><input class="form-check-input" type="checkbox" value="Black Market" id="blackmarket"/> <label class="form-check-label" for="blackmarket">Black Market</label></div></a></li>
-                </ul>
-            </div>
-    
-            <!-- Market Age Input -->
-            <input type="number" class="form-control" id="marketAge" style="width: 150px;" placeholder="Age" aria-label="Market Age">
-            <!-- Price filter -->
-            <input type="number" class="form-control" id="profitFilter" style="width: 150px;" placeholder="Min. Profit" aria-label="Min. profit">
-            <!-- Premium Checkbox -->
-            <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="true" id="premium" checked/>
-                <label class="form-check-label" for="premium">Premium?</label>
-            </div>
-    
-            <!-- Find Flips Button -->
-            <button type="button" onclick="" class="btn btn-primary">Find Flips!</button>
-        </div>
-    
-        <div class="progress" style="height: 20px; width: 100%; margin-top: 10px;">
-            <div id="progressBar" class="progress-bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-        </div>
-    </div>
-    
-    
-    
-        <!-- Full-width Progress Bar -->
-        
-    
-        <!-- Table -->
-        <table class="table sortable table-responsive table-sm" id="tradesTable" data-toggle="table" data-sortable="true">
-            <thead>
-                <tr>
-                    <th data-field="item" data-sortable="false" class="w-15">Item</th>
-                    <th data-field="profit" data-sortable="true" class="w-15">Profit (including taxes)</th>
-                    <th data-field="risk" data-sortable="true" class="w-15">Order Fulfillment Risk</th>
-                    <th data-visible="true" data-field="tradeRoute" data-sortable="false">Flip!</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
-        </table>
-
-<script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.js"></script>
-<script src="js/main.js" defer></script>
-<script>
-    function applyProfitFilter() {
-        const threshold = parseFloat(document.getElementById('profitFilter').value) || 0;
-        const table = document.getElementById('tradesTable');
-        const rows = table.querySelectorAll('tbody tr');
-    
-        rows.forEach(row => {
-            const profitCell = row.cells[1]; // Profit column (index 1)
-            const profitValue = parseFloat(profitCell.textContent.replace(/[^0-9.-]+/g,""));
-            row.style.display = (profitValue >= threshold) ? '' : 'none';
-        });
+function initializeStorage() {
+    if (!localStorage.getItem('totalProfit')) {
+        localStorage.setItem('totalProfit', '0');
     }
-    </script>
-    <script>
-        document.getElementById('profitFilter').addEventListener('input', function () {
-            applyProfitFilter();
-        });
-        </script>
-<script>
-    $(document).ready(function() {
-        // Restore server selection from localStorage
-        var storedServer = localStorage.getItem('selectedServer');
-        if (storedServer) {
-            $('#serverSelect .dropdown-toggle').text(storedServer); // Update server button text within the div
-        } else {
-            $('#serverSelect .dropdown-toggle').text('Server'); // Default label if no server selection is stored
-        }
+    if (!localStorage.getItem('totalFlips')) {
+        localStorage.setItem('totalFlips', '0');
+    }
+}
 
-        // Event listener for server dropdown item clicks
-        $('#serverSelect .dropdown-menu .dropdown-item').on('click', function() {
-            var selectedText = $(this).data('value');
-            $('#serverSelect .dropdown-toggle').text(selectedText); // Update the server button text
-            localStorage.setItem('selectedServer', selectedText); // Persist the selected server
-        });
+function toggleClaimStatus(profit, button) {
+    // Check if the button text is "Claim" or "Unclaim"
+    if (button.textContent === "Claim") {
+        // Claim the trade
+        updateProfitAndFlips(profit);
+        // Change button to "Unclaim" and set it to red
+        button.textContent = "Unclaim";
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-danger');
+    } else {
+        // Unclaim the trade
+        unclaimProfitAndFlips(profit);
+        // Change button to "Claim" and set it back to blue
+        button.textContent = "Claim";
+        button.classList.remove('btn-danger');
+        button.classList.add('btn-primary');
+    }
+}
 
-        // Restore city selection from localStorage
-        var storedCities = localStorage.getItem('selectedCities');
-        if (storedCities) {
-            $('#cityDropdownButton').text(storedCities); // Restore city button text
-            // Set checkboxes as selected based on stored values
-            const cities = storedCities.split(', ');
-            $('#citySelect .form-check-input').each(function() {
-                const cityLabel = $(this).next('label').text();
-                if (cities.includes(cityLabel)) {
-                    $(this).prop('checked', true);
-                }
-            });
-        } else {
-            $('#cityDropdownButton').text('City');
-        }
+// Function to update the displayed totals
+function updateDisplayedTotals() {
+    const totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
+    const totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
+    document.getElementById('totalProfitDisplay').textContent = `🪙${totalProfit.toFixed(0)}`;
+    document.getElementById('totalFlipsDisplay').textContent = `🔢${totalFlips}`;
+}
 
-        // Event listener for city checkboxes change
-        $('#citySelect .form-check-input').on('change', function() {
-            let selectedCities = [];
-            $('#citySelect .form-check-input:checked').each(function() {
-                selectedCities.push($(this).next('label').text());
-            });
-            $('#cityDropdownButton').text(selectedCities.join(', ') || 'City');
-            localStorage.setItem('selectedCities', selectedCities.join(', ')); // Persist selected cities
-        });
+// Function to handle updating profit and flips on button click
+function updateProfitAndFlips(profit) {
+    let totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
+    let totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
 
-        // Restore tier selection from localStorage
-        var storedTiers = localStorage.getItem('selectedTiers');
-        if (storedTiers) {
-            $('#tierDropdownButton').text(storedTiers); // Restore tier button text
-            // Set checkboxes as selected based on stored values
-            const tiers = storedTiers.split(', ');
-            $('#tierSelect .form-check-input').each(function() {
-                const tierLabel = $(this).next('label').text();
-                if (tiers.includes(tierLabel)) {
-                    $(this).prop('checked', true);
-                }
-            });
-        } else {
-            $('#tierDropdownButton').text('Tiers');
-        }
+    totalProfit += profit;
+    totalFlips++;
 
-        // Event listener for tier checkboxes change
-        $('#tierSelect .form-check-input').on('change', function() {
-            let selectedTiers = [];
-            $('#tierSelect .form-check-input:checked').each(function() {
-                selectedTiers.push($(this).next('label').text());
-            });
-            $('#tierDropdownButton').text(selectedTiers.join(', ') || 'Tiers');
-            localStorage.setItem('selectedTiers', selectedTiers.join(', ')); // Persist selected tiers
-        });
-    });
+    // Update localStorage with new values
+    localStorage.setItem('totalProfit', totalProfit.toString());
+    localStorage.setItem('totalFlips', totalFlips.toString());
 
-    document.addEventListener("DOMContentLoaded", function () {
-    const themeToggle = document.getElementById("themeToggle");
+    // Update the displayed totals
+    updateDisplayedTotals();
+}
 
-    // Load theme from localStorage or default to light
-    const savedTheme = localStorage.getItem("theme") || "light";
-    document.documentElement.setAttribute("data-bs-theme", savedTheme);
-    themeToggle.checked = savedTheme === "dark";
+// Function to handle unclaiming profit and flips on "Unclaim" button click
+function unclaimProfitAndFlips(profit) {
+    let totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
+    let totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
 
-    themeToggle.addEventListener("change", function () {
-        const theme = themeToggle.checked ? "dark" : "light";
-        document.documentElement.setAttribute("data-bs-theme", theme);
-        localStorage.setItem("theme", theme); // Save theme to localStorage
-    });
+    totalProfit -= profit; // Deduct profit
+    totalFlips--; // Deduct flip count
+
+    // Ensure totalProfit doesn't go below 0 and totalFlips doesn't go below 0
+    if (totalProfit < 0) totalProfit = 0;
+    if (totalFlips < 0) totalFlips = 0;
+
+    // Update localStorage with new values
+    localStorage.setItem('totalProfit', totalProfit.toString());
+    localStorage.setItem('totalFlips', totalFlips.toString());
+
+    // Update the displayed totals
+    updateDisplayedTotals();
+}
+
+async function fetchData(url) {
+    //console.log(url);
+    try {
+        const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+    return await response.json();
+    } catch (error) {
+        console.error('Error fetching JSON:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeStorage();
+    updateDisplayedTotals();
 });
 
-</script>
-
-
-
-
-
-<!--
-<script>
-    $(document).ready(function() {
-        // Event listener for dropdown item clicks
-        $('.dropdown-menu .dropdown-item').on('click', function() {
-            // Get the selected item's text
-            var selectedText = $(this).data('value');
-            // Update the button text
-            $('#serverSelect').text(selectedText);
-        });
+async function extractItems() {
+    let items = [];
+    apiData = await fetchData('https://vekeng.github.io/AlbionFlipper/json/items.json');  // Wait for fetchData to complete
+    apiData.forEach(item => {
+        let itemTier, itemName, itemDescriptionEng;
+        const [, itemEnchantment] = item.UniqueName.includes('@') ? item.UniqueName.split('@') : [item.UniqueName, 0];
+        const itemID = item.UniqueName;
+        const match = itemID.match(/^T(\d)/);
+        if (match) {
+            itemTier = parseInt(match[1]);
+        } else {
+            itemTier = 0;
+        }
+        if (item.LocalizedNames) {
+            itemName = item.LocalizedNames['EN-US'];
+        } else {
+            itemName = "N/A"
+        }
+        if (item.LocalizedDescriptions) {
+            itemDescriptionEng = item.LocalizedDescriptions['EN-US']; 
+        } else { itemDescriptionEng = 'non-trad'; }
+        if (itemTier && itemTier >= 4 && !itemDescriptionEng.includes("non-trad")) {
+            items.push({ID: itemID, name: itemName, enchantment: itemEnchantment, tier: itemTier});
+        }
     });
-    document.querySelectorAll('#citySelect .form-check-input').forEach(input => {
-        input.addEventListener('change', function() {
-            let selectedCities = [];
-            document.querySelectorAll('#citySelect .form-check-input:checked').forEach(checked => {
-                selectedCities.push(checked.labels[0].textContent);
-            });
-            document.getElementById('cityDropdownButton').textContent = selectedCities.join(', ') || 'City';
-        });
-    });
+    return items;
+}
 
-    // Function to update tierSelect dropdown label with selected tiers
-    document.querySelectorAll('#tierSelect .form-check-input').forEach(input => {
-        input.addEventListener('change', function() {
-            let selectedTiers = [];
-            document.querySelectorAll('#tierSelect .form-check-input:checked').forEach(checked => {
-                selectedTiers.push(checked.labels[0].textContent);
-            });
-            document.getElementById('tierDropdownButton').textContent = selectedTiers.join(', ') || 'Tiers';
-        });
-    });
-</script>
--->
-<script>
-    document.querySelector('.btn-primary').addEventListener('click', function(event) {
-    event.preventDefault();  // Prevent automatic trigger
-    processData();
-});
-</script>
-</body>
-<script>
-    function processData() {
-        var server = document.getElementById('serverSelect').innerText.toLowerCase();
-        var marketAge = parseInt(document.getElementById('marketAge').value) || 20;
-        var selectedTiers = [];
-        var selectedCities = [];
-        var premium = document.getElementById('premium').checked;
-        document.querySelectorAll('#tierSelect .form-check-input:checked').forEach(function(checkbox) {
-            selectedTiers.push(parseInt(checkbox.value));  // Collect checked checkbox values
-        });
-        document.querySelectorAll('#citySelect .form-check-input:checked').forEach(function(checkbox) {
-            selectedCities.push(checkbox.value);  // Collect checked checkbox values
-        });
-        console.log(server,selectedTiers,selectedCities,marketAge, premium);
-        main(server,selectedTiers,selectedCities,marketAge, premium);
-        
+async function getMarketData(region,cities,items) {
+    let server;
+    switch(region) {
+        case 'europe': 
+            server = 'https://europe.albion-online-data.com';
+            break;
+        case 'asia': 
+            server = "https://east.albion-online-data.com";
+            break;
+        case 'americas': 
+            server = "https://west.albion-online-data.com";
+            break;
+        default: 
+            server = 'https://europe.albion-online-data.com';
+    };
+    const citiesString = cities.join(',');
+    url = `${server}/api/v2/stats/Prices/${items}.json?locations=${cities}&qualities=0,1,2,3,4`
+    return await fetchData(url);
+}
+
+async function main(server, tier, cities, marketAge, premium) {
+    let taxModifier; 
+    if (!premium) {
+        taxModifier = 0.92;
+    } else { taxModifier = 0.96;  }
+    const items = await extractItems();
+    const selectedItems = items
+        .filter(item => tier.includes(item.tier))
+        .map(item => item.ID);
+    const chunkSize = 250; 
+    const itemChunks = splitArrayIntoChunks(selectedItems, chunkSize);
+    const allItems = [];
+    const totalChunks = itemChunks.length;
+    let completedChunks = 0; 
+    for (const chunk of itemChunks) {
+        const data = await getMarketData(server,cities,chunk);
+        if (data) {
+            allItems.push(...data);  // Merge the fetched data
+        }
+        completedChunks++;
+        const progress = (completedChunks / totalChunks) * 100;
+        document.getElementById("progressBar").style.width = `${progress}%`;
+        document.getElementById("progressBar").setAttribute('aria-valuenow', progress);  
     }
-</script>
-</body>
-</html>
+    const profitableTrades = findProfitableTradesBetweenCities(allItems, cities, taxModifier, marketAge);
+    const topProfitableTrades  = new Map();
+    profitableTrades.forEach(trade => {
+        const itemId = trade.itemId; 
+        const profit = trade.profit;
+        if (!topProfitableTrades.has(itemId) || profit > topProfitableTrades.get(itemId).profit) {
+            // Update with the new trade if it has a higher profit
+            topProfitableTrades.set(itemId, trade);
+          }
+    });
+    const topProfitableTradesWithNames = fillNames(items,topProfitableTrades)
+    populateTradesTable(topProfitableTradesWithNames);
+}
+/*
+function populateTradesTable(trades) {
+    console.log(Array.from(trades.values()));
+    $('#tradesTable').bootstrapTable('refreshOptions', {
+        
+        data: Array.from(trades.values()), // Pass the array of trades data
+        sortable: true
+    });
+}
+*/
+function populateTradesTable(trades) {
+    $('#tradesTable').bootstrapTable('refreshOptions', {
+        data: Array.from(trades.values()), // Pass the array of trades data
+        sortable: true,
+        sortOrder: 'desc', // Default sort order is descending
+        sortName: 'profit', // Default column to sort by
+        columns: [
+            { field: 'item', visible: true, formatter: formatItems},
+            //{ field: 'itemTier', sortable: true, visible: true },
+            //{ field: 'itemName', sortable: true, visible: true },
+            { field: 'profit', sortable: true, visible: true },
+            { field: 'risk', sortable: false, visible: true, formatter: buySellDiff},
+            { field: 'tradeRoute', sortable: true, visible: true, formatter: tradeRouteFormatter }
+		]
+    });
+	applyProfitFilter();
+}
+
+function buySellDiff(value, row) {
+    if (row.risk > 0.90 ) { 
+        risk = `<div title="Order may get fulfilled soon!">${row.risk} ⚠️</div>`;
+    } else if (row.risk === "N/A" ) {
+        risk = `<div title="Data is missing to calculate risk">${row.risk}</div>`;
+    } else { risk = row.risk }
+    return risk;
+}
+
+function formatItems(value, row) { 
+    return `
+    <img src="https://render.albiononline.com/v1/item/${row.itemId}.png" alt="Item Image" width="50" height="50">
+    ${row.itemName}
+    ${row.itemTier}
+    `;
+}
+
+function tradeRouteFormatter(value, row) {
+    return `
+        <div class="trade-route-container">
+            <div class="trade-block">
+                <strong>City:</strong> ${row.buyFromCity}<br>
+                <strong>Price:</strong> ${row.sellOrder}<br>
+                <strong>Quality:</strong> ${row.sellQuality}
+                <div class="age-text">Age: ${row.sellAge}</div>
+            </div>
+            <span class="arrow">→</span>
+            <div class="trade-block">
+                <strong>City:</strong> ${row.sellToCity}<br>
+                <strong>Price:</strong> ${row.buyOrder}<br>
+                <strong>Quality:</strong> ${row.buyQuality}
+                <div class="age-text">Age: ${row.buyAge}</div>
+            </div>
+            <button class="btn btn-primary" onclick="toggleClaimStatus(${row.profit}, this)">Claim</button>        </div>
+    `;
+}
+
+function fillNames (items, trades) {
+    const itemLookup = new Map();
+    items.forEach(item => {
+        itemLookup.set(item.ID, {
+            itemName: item.name, 
+            itemTier: item.tier,
+            itemEnchantment: item.enchantment,
+        });
+    });
+
+// Iterate over json1 and add itemName from the lookup map
+    trades.forEach(item => {
+        const itemData = itemLookup.get(item.itemId);
+        if (itemData) {
+            item.itemName = itemData.itemName;
+            item.itemTier = `${itemData.itemTier}.${itemData.itemEnchantment}`;
+        }
+    });
+    return trades; 
+}
+
+function splitArrayIntoChunks(array, chunkSize) {
+    const chunks = [];
+    for (let i = 0; i < array.length; i += chunkSize) {
+        chunks.push(array.slice(i, i + chunkSize));
+    }
+    return chunks;
+}
+
+
+function findProfitableTradesBetweenCities(data, cities, taxModifier, marketAge) {
+    const profitableTrades = [];
+    const now = new Date();
+
+    // Group items by item_id for easier lookup  
+    const itemsById = data.reduce((acc, item) => {
+        if (!acc[item.item_id]) acc[item.item_id] = [];
+        acc[item.item_id].push(item);
+        return acc;
+    }, {});
+  
+    // Iterate over each item type
+    for (const item_id in itemsById) {
+        const items = itemsById[item_id];
+
+        // Compare listings within the defined cities only
+        for (let i = 0; i < items.length; i++) {
+            const itemA = items[i];
+
+            // Skip if the item is not in one of the desired cities
+            if (!cities.includes(itemA.city)) continue;
+
+            // Convert sell price date to Date object and check if it's within market age
+            const sellDate = new Date(`${itemA.sell_price_min_date}Z`);
+            const sellAge = parseInt((now - sellDate) / 60 / 1000);
+            if (sellAge > marketAge) continue;
+
+            for (let j = 0; j < items.length; j++) {
+                if (i === j) continue; // Avoid comparing the same city with itself
+
+                const itemB = items[j];
+                if (itemB.city != "Black Market") continue;
+
+                // Skip if the item is not in one of the desired cities
+                if (!cities.includes(itemB.city)) continue;
+
+                // Convert buy price date to Date object and check if it's within market age
+                const buyDate = new Date(`${itemB.buy_price_max_date}Z`);
+                const buyAge = parseInt((now - buyDate) / 60 / 1000); 
+                if (buyAge > marketAge) continue;
+
+                // Extract relevant values for comparison
+                const {
+                    sell_price_min: sellPriceA,
+                    city: cityA,
+                    quality: qualityA
+                } = itemA;
+                const {
+                    buy_price_max: rawBuyPriceB,
+                    sell_price_min: minBuyOrder,
+                    city: cityB,
+                    quality: qualityB
+                } = itemB;
+
+                risk = (rawBuyPriceB * 100 / minBuyOrder)/100; 
+                //console.log(risk, typeof(risk));
+                if (risk === Infinity || risk > 1 ) { risk = "N/A" } else { risk = risk.toFixed(2)}
+
+                const buyPriceB = parseInt(rawBuyPriceB * taxModifier);
+                // Check for profitable trade, ensuring quality constraints are met
+                if (buyPriceB > sellPriceA && sellPriceA > 0 && cityA != cityB && qualityA >= qualityB) {
+                    profitableTrades.push({
+                        buyFromCity: cityA,
+                        sellToCity: cityB,
+                        itemId: item_id,
+                        sellOrder: sellPriceA,
+                        buyOrder: rawBuyPriceB,
+                        sellQuality: mapQuality(qualityA),
+                        buyQuality: mapQuality(qualityB),
+                        sellAge: sellAge,
+                        buyAge: buyAge,
+                        profit: buyPriceB - sellPriceA,
+                        risk: risk, 
+                    });
+                }
+            }
+        }
+    }
+
+    return profitableTrades;
+}
+
+function mapQuality(quality) {
+    switch(quality) {
+        case 1: 
+            return "Normal";
+        case 2: 
+            return "Good";
+        case 3: 
+            return "Outstanding";
+        case 4: 
+            return "Excellent";
+        case 5: 
+            return "Masterpiece"
+        default: 
+            return "Normal"
+    };
+}
+//main()

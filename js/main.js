@@ -1,3 +1,75 @@
+function initializeStorage() {
+    if (!localStorage.getItem('totalProfit')) {
+        localStorage.setItem('totalProfit', '0');
+    }
+    if (!localStorage.getItem('totalFlips')) {
+        localStorage.setItem('totalFlips', '0');
+    }
+}
+
+function toggleClaimStatus(profit, button) {
+    // Check if the button text is "Claim" or "Unclaim"
+    if (button.textContent === "Claim") {
+        // Claim the trade
+        updateProfitAndFlips(profit);
+        // Change button to "Unclaim" and set it to red
+        button.textContent = "Unclaim";
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-danger');
+    } else {
+        // Unclaim the trade
+        unclaimProfitAndFlips(profit);
+        // Change button to "Claim" and set it back to blue
+        button.textContent = "Claim";
+        button.classList.remove('btn-danger');
+        button.classList.add('btn-primary');
+    }
+}
+
+// Function to update the displayed totals
+function updateDisplayedTotals() {
+    const totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
+    const totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
+    document.getElementById('totalProfitDisplay').textContent = `Total Profit: $${totalProfit.toFixed(2)}`;
+    document.getElementById('totalFlipsDisplay').textContent = `Total Flips: ${totalFlips}`;
+}
+
+// Function to handle updating profit and flips on button click
+function updateProfitAndFlips(profit) {
+    let totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
+    let totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
+
+    totalProfit += profit;
+    totalFlips++;
+
+    // Update localStorage with new values
+    localStorage.setItem('totalProfit', totalProfit.toString());
+    localStorage.setItem('totalFlips', totalFlips.toString());
+
+    // Update the displayed totals
+    updateDisplayedTotals();
+}
+
+// Function to handle unclaiming profit and flips on "Unclaim" button click
+function unclaimProfitAndFlips(profit) {
+    let totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
+    let totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
+
+    totalProfit -= profit; // Deduct profit
+    totalFlips--; // Deduct flip count
+
+    // Ensure totalProfit doesn't go below 0 and totalFlips doesn't go below 0
+    if (totalProfit < 0) totalProfit = 0;
+    if (totalFlips < 0) totalFlips = 0;
+
+    // Update localStorage with new values
+    localStorage.setItem('totalProfit', totalProfit.toString());
+    localStorage.setItem('totalFlips', totalFlips.toString());
+
+    // Update the displayed totals
+    updateDisplayedTotals();
+}
+
 async function fetchData(url) {
     //console.log(url);
     try {
@@ -10,6 +82,11 @@ async function fetchData(url) {
         console.error('Error fetching JSON:', error);
     }
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeStorage();
+    updateDisplayedTotals();
+});
 
 async function extractItems() {
     let items = [];
@@ -119,7 +196,7 @@ function populateTradesTable(trades) {
             { field: 'profit', sortable: true, visible: true },
             { field: 'risk', sortable: false, visible: true, formatter: buySellDiff},
             { field: 'tradeRoute', sortable: true, visible: true, formatter: tradeRouteFormatter }
-        ]
+		]
     });
 	applyProfitFilter();
 }
@@ -157,7 +234,7 @@ function tradeRouteFormatter(value, row) {
                 <strong>Quality:</strong> ${row.buyQuality}
                 <div class="age-text">Age: ${row.buyAge}</div>
             </div>
-        </div>
+            <button class="btn btn-primary" onclick="toggleClaimStatus(${row.profit}, this)">Claim</button>        </div>
     `;
 }
 

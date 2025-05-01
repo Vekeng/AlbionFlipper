@@ -37,3 +37,26 @@
     text-overflow: ellipsis; /* Add ellipsis when text overflows */
 }
 
+.button-container {
+    display: flex;
+    justify-content: flex-start;  /* Keep button on the left */
+    align-items: center;
+    width: 100%;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;  /* Ensure the container uses the full width */
+}
+
+.stats-right {
+    margin-left: auto;  /* Push the stats to the right */
+    display: flex;
+    gap: 10px;
+}
+
+#totalProfitDisplay, #totalFlipsDisplay {
+    font-weight: bold;
+    font-size: 16px;
+}
