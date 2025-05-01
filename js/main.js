@@ -34,6 +34,11 @@ function updateDisplayedTotals() {
     document.getElementById('totalFlipsDisplay').textContent = `🔢${totalFlips}`;
 }
 
+function resetProfit() {
+	localStorage.setItem('totalProfit', "0");
+    localStorage.setItem('totalFlips', "0");
+	updateDisplayedTotals();
+}
 // Function to handle updating profit and flips on button click
 function updateProfitAndFlips(profit) {
     let totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
