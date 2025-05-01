@@ -30,8 +30,8 @@ function toggleClaimStatus(profit, button) {
 function updateDisplayedTotals() {
     const totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
     const totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
-    document.getElementById('totalProfitDisplay').textContent = `Total Profit: $${totalProfit.toFixed(2)}`;
-    document.getElementById('totalFlipsDisplay').textContent = `Total Flips: ${totalFlips}`;
+    document.getElementById('totalProfitDisplay').textContent = `🪙${totalProfit.toFixed(0)}`;
+    document.getElementById('totalFlipsDisplay').textContent = `🔢${totalFlips}`;
 }
 
 // Function to handle updating profit and flips on button click
