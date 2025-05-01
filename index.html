@@ -117,22 +117,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap-table@1.23.5/dist/bootstrap-table.min.js"></script>
 <script src="js/main.js" defer></script>
 <script>
-    document.getElementById('profitFilter').addEventListener('input', function () {
-        const threshold = parseFloat(this.value) || 0;
+    function applyProfitFilter() {
+        const threshold = parseFloat(document.getElementById('profitFilter').value) || 0;
         const table = document.getElementById('tradesTable');
         const rows = table.querySelectorAll('tbody tr');
     
         rows.forEach(row => {
-            const profitCell = row.cells[1]; // Index 1 = Profit column
+            const profitCell = row.cells[1]; // Profit column (index 1)
             const profitValue = parseFloat(profitCell.textContent.replace(/[^0-9.-]+/g,""));
-            if (profitValue >= threshold) {
-                row.style.display = '';
-            } else {
-                row.style.display = 'none';
-            }
+            row.style.display = (profitValue >= threshold) ? '' : 'none';
         });
-    });
+    }
     </script>
+    <script>
+        document.getElementById('profitFilter').addEventListener('input', function () {
+            applyProfitFilter();
+        });
+        </script>
 <script>
     $(document).ready(function() {
         // Restore server selection from localStorage
@@ -279,6 +280,7 @@
         });
         console.log(server,selectedTiers,selectedCities,marketAge, premium);
         main(server,selectedTiers,selectedCities,marketAge, premium);
+        
     }
 </script>
 </body>

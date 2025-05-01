@@ -121,6 +121,7 @@ function populateTradesTable(trades) {
             { field: 'tradeRoute', sortable: true, visible: true, formatter: tradeRouteFormatter }
         ]
     });
+	applyProfitFilter();
 }
 
 function buySellDiff(value, row) {
