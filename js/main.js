@@ -198,7 +198,7 @@ function populateTradesTable(trades) {
             { field: 'item', visible: true, formatter: formatItems},
             //{ field: 'itemTier', sortable: true, visible: true },
             //{ field: 'itemName', sortable: true, visible: true },
-            { field: 'profit', sortable: true, visible: true },
+            { field: 'profit', sortable: true, visible: true, formatter: profitFormatter },
             { field: 'risk', sortable: false, visible: true, formatter: buySellDiff},
             { field: 'tradeRoute', sortable: true, visible: true, formatter: tradeRouteFormatter }
 		]
@@ -215,6 +215,11 @@ function buySellDiff(value, row) {
     return risk;
 }
 
+function profitFormatter(value, row) {
+	return Intl.NumberFormat('fr-FR').format(row.profit);
+}
+
+
 function formatItems(value, row) { 
     return `
     <img src="https://render.albiononline.com/v1/item/${row.itemId}.png" alt="Item Image" width="50" height="50">
@@ -224,18 +229,19 @@ function formatItems(value, row) {
 }
 
 function tradeRouteFormatter(value, row) {
+	const formatter = new Intl.NumberFormat('fr-FR');
     return `
         <div class="trade-route-container">
             <div class="trade-block">
                 <strong>City:</strong> ${row.buyFromCity}<br>
-                <strong>Price:</strong> ${row.sellOrder}<br>
+                <strong>Price:</strong> ${formatter.format(row.sellOrder)}<br>
                 <strong>Quality:</strong> ${row.sellQuality}
                 <div class="age-text">Age: ${row.sellAge}</div>
             </div>
             <span class="arrow">→</span>
             <div class="trade-block">
                 <strong>City:</strong> ${row.sellToCity}<br>
-                <strong>Price:</strong> ${row.buyOrder}<br>
+                <strong>Price:</strong> ${formatter.format(row.buyOrder)}<br>
                 <strong>Quality:</strong> ${row.buyQuality}
                 <div class="age-text">Age: ${row.buyAge}</div>
             </div>
