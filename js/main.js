@@ -30,7 +30,8 @@ function toggleClaimStatus(profit, button) {
 function updateDisplayedTotals() {
     const totalProfit = parseFloat(localStorage.getItem('totalProfit')) || 0;
     const totalFlips = parseInt(localStorage.getItem('totalFlips')) || 0;
-    document.getElementById('totalProfitDisplay').textContent = `🪙${totalProfit.toFixed(0)}`;
+    
+    document.getElementById('totalProfitDisplay').textContent = `🪙${Intl.NumberFormat('fr-FR').format(totalProfit.toFixed(0))}`;
     document.getElementById('totalFlipsDisplay').textContent = `🔢${totalFlips}`;
 }
 
